@@ -4,7 +4,7 @@ metadata:
   name: web
   namespace: roboshop
 data:
-  nginx.conf:
+  nginx.conf: |
     user www-data;
     worker_processes 4;
     pid /var/run/nginx.pid;
@@ -84,7 +84,6 @@ data:
             root   /usr/share/nginx/html;
         }
 
-
     }
 
     } 
@@ -95,20 +94,20 @@ kind: Deployment
 metadata:
   name: web
   namespace: roboshop
-  labels:  # these labels are deployment labels
+  labels: # these labels are deployment labels
     app: web
     project: roboshop
     tier: web
 spec:
   replicas: 1
   selector:
-    matchLabels:  # these labels are used to find the pods
+    matchLabels: # these labels are used to find the pods
       app: web
       project: roboshop
       tier: web
   template:
     metadata:
-      labels:  # these labels are pod labels
+      labels: # these labels are pod labels
         app: web
         project: roboshop
         tier: web
@@ -129,7 +128,7 @@ spec:
           items:
             - key: nginx.conf
               path: nginx.conf
----  
+---
 apiVersion: v1
 kind: Service
 metadata:
